@@ -7,26 +7,39 @@ app = Flask(__name__)
 
 @app.route('/', methods=["POST", "GET"])
 def index():
-
+    
     action_type = None
 
     if request.method == "POST":
         # Get selected action type from the form
         action_type = request.form.get("action_type")
-
-    print(action_type)
+        x_start_coordinate = request.form.get("x_start")
+        y_start_coordinate = request.form.get("y_start")
+        x_end_coordinate = request.form.get("x_end")
+        y_end_coordinate = request.form.get("y_end")
+        print("Action:", action_type, "X:", x_start_coordinate, "Y:", y_start_coordinate)
+        print("Action:", action_type, "X:", x_end_coordinate, "Y:", y_end_coordinate)
+    
 
     #temporary variables 
-    player = "Bukayo Saka"
-    x_start_coordinate = "0.34"
-    y_start_coordinate = "0.76"
-    x_end_coordinate = "0.24"
-    y_end_coordinate = "0.64"
+    #player = "Bukayo Saka"
+    #x_start_coordinate = "0.34"
+    #y_start_coordinate = "0.76"
+    #x_end_coordinate = "0.24"
+    #y_end_coordinate = "0.64"
     successful = True
     shot_x_coordinate = "0.85"
     shot_y_coordinate = "0.25"
 
-    return render_template('index.html', type=action_type, player=player, x_start_coordinate=x_start_coordinate, y_start_coordinate=y_start_coordinate,x_end_coordinate=x_end_coordinate,y_end_coordinate=y_end_coordinate, successful=successful,shot_x_coordinate=shot_x_coordinate,shot_y_coordinate=shot_y_coordinate)
+    return render_template('index.html', type=action_type,
+                            #player=player,
+                            x_start_coordinate=x_start_coordinate,
+                            y_start_coordinate=y_start_coordinate,
+                            x_end_coordinate=x_end_coordinate,
+                            y_end_coordinate=y_end_coordinate,
+                            successful=successful,
+                            shot_x_coordinate=shot_x_coordinate,
+                            shot_y_coordinate=shot_y_coordinate)
 
 if __name__ == '__main__':
     app.run(debug=True)
