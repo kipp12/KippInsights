@@ -1,0 +1,56 @@
+body{
+    font-family: monospace;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+h1{
+    font-size: 80px;
+    color: #DA7979;
+    margin: 0px;
+}
+
+.control_buttons{
+    float: left;
+    width: 26%;
+    margin-left: 2%;
+}
+
+.control_buttons h2{
+    font-size: 50px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.control_buttons h3{
+    font-size: 40px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.control_buttons p{
+    font-size: 30px;
+}
+
+.pitch_box{
+    float: right;
+    width: 70%;
+}
+
+.pitch_box h2{
+    color:#DA7979;
+    font-size: 50px;
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.pitch_box img{
+    width: 100%;
+    height: max-content;
+}
+
