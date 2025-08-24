@@ -35,6 +35,22 @@ h1{
     font-size: 30px;
 }
 
+.control_buttons p action_complete{
+    color: green;
+}
+
+.status.successful{
+    color: green;
+}
+
+.status.unsuccessful{
+    color: red;
+}
+
+
+
+
+
 .pitch_box{
     float: right;
     width: 70%;
@@ -49,8 +65,46 @@ h1{
     padding: 0;
 }
 
-.pitch_box img{
-    width: 100%;
-    height: max-content;
+.pitch_box svg{
+    margin-left: 10%;
+    text-align: center;
 }
+
+
+.dropbtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+  }
+  
+  .dropdown {
+    margin-top: 5%;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 5%;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
 
