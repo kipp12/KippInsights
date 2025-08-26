@@ -11,6 +11,8 @@ h1{
     margin: 0px;
 }
 
+/*------------------control_buttons------------------*/
+
 .control_buttons{
     float: left;
     width: 26%;
@@ -49,7 +51,7 @@ h1{
 
 
 
-
+/*------------------pitch_box------------------*/
 
 .pitch_box{
     float: right;
@@ -70,7 +72,7 @@ h1{
     text-align: center;
 }
 
-/* Form container */
+/*------------------Form container------------------*/
 form {
     font-family: monospace;
     margin: 20px 0;
@@ -99,8 +101,22 @@ form select:focus {
     box-shadow: 0 0 5px rgba(0,123,255,0.5);
 }
 
+form button{
+    font-size: 30px;
+    padding: 2%;
+    margin-top: 5%;
+    margin-left: 4%;
+    width: 40%;
+    
+}
+
 /* Submit button styling */
 form button[type="submit"] {
     background-color: #007b
+}
+
+form label:successful{
+    margin-top: 5%;
+    
 }
 

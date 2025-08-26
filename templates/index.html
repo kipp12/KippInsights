@@ -35,7 +35,12 @@
             <input type="hidden" id="x_end" name="x_end">
             <input type="hidden" id="y_end" name="y_end">
 
+
             <button type="submit">Save Event</button>
+            <button>Reset</button>
+
+            <label for="successful">Successful?</label>
+            <input type="checkbox" name="successful" >
 
             
         </form>
@@ -47,6 +52,7 @@
         <p id="type">Type: {{type}} </p>
         <p id="start_coords">Start location: </p>
         <p id="end_coords">End location:</p>
+        <p id="success">successful:</p>
         
 
         <!--
@@ -145,6 +151,8 @@ const pitchHeight = pitch.clientHeight; // 592
 let clicks = 0;
 let startMarker, endMarker, line;
 
+
+
 pitch.addEventListener("click", function(event) {
     const rect = pitch.getBoundingClientRect();
 
@@ -176,7 +184,7 @@ pitch.addEventListener("click", function(event) {
         document.getElementById("y_start").value = normY;
 
         //displays selected start value
-        document.getElementById("start_coords").innerHTML = normX + "," + normY
+        document.getElementById("start_coords").innerHTML = "Start location: " + normX + "," + normY
         clicks = 1;
     } else if (clicks === 1) {
         endMarker = document.createElementNS("http://www.w3.org/2000/svg", "circle");
@@ -201,7 +209,7 @@ pitch.addEventListener("click", function(event) {
         document.getElementById("y_end").value = normY;
 
         //displays selected end value
-        document.getElementById("end_coords").innerHTML = normX + "," + normY
+        document.getElementById("end_coords").innerHTML = "End location: " + normX + "," + normY
         clicks = 0;
     }
     else if (clicks > 2 ){
