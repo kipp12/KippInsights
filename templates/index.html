@@ -40,7 +40,7 @@
             <button>Reset</button>
 
             <label for="successful">Successful?</label>
-            <input type="checkbox" name="successful" >
+            <input type="checkbox" name="successful" id="successful">
 
             
         </form>
@@ -52,54 +52,8 @@
         <p id="type">Type: {{type}} </p>
         <p id="start_coords">Start location: </p>
         <p id="end_coords">End location:</p>
-        <p id="success">successful:</p>
+        <p id="success">Successful: n/a</p>
         
-
-        <!--
-
-        {% if type == 'pass' %}
-        <p>Type: {{type}}</p>
-        <p>Player: {{player}}</p>
-        <p>Start location: {{x_start_coordinate}},{{y_start_coordinate}}</p>
-        <p>End location: {{x_end_coordinate}},{{y_end_coordinate}}</p>
-    
-        {% if successful == True %}
-        <p class="status successful">Complete</p>
-        {% else %}
-        <p class="status unsuccessful">Incomplete</p>
-        {% endif %}
-        
-        {% endif %}
-
-        
-
-        {% if type == 'shot' %}
-        <p>Type: {{type}}</p>
-        <p>Player: {{player}}</p>
-        <p>Shot location: {{shot_x_coordinate}},{{shot_y_coordinate}}</p>
-        
-        {% if successful == True %}
-        <p class="status successful">Complete</p>
-        {% else %}
-        <p class="status unsuccessful">Incomplete</p>
-        {% endif %}
-        
-        {% endif %}
-
-        {% if type == 'dribble' %}
-        <p>Type: {{type}}</p>
-        <p>Player: {{player}}</p>
-        <p>Start location: {{x_start_coordinate}},{{y_start_coordinate}}</p>
-        <p>End location: {{x_end_coordinate}},{{y_end_coordinate}}</p>
-        {% if successful == True %}
-        <p class="status successful">Complete</p>
-        {% else %}
-        <p class="status unsuccessful">Incomplete</p>
-        {% endif %}
-
-        {% endif %}
-
-        -->
 
     </div>
     
@@ -151,7 +105,16 @@ const pitchHeight = pitch.clientHeight; // 592
 let clicks = 0;
 let startMarker, endMarker, line;
 
+const checkbox = document.getElementById("successful");
+const statusText = document.getElementById("success");
 
+    checkbox.addEventListener("change", () => {
+        if (checkbox.checked) {
+            statusText.textContent = "Successful: Yes";
+        } else {
+            statusText.textContent = "Successful: No";
+        }
+    });
 
 pitch.addEventListener("click", function(event) {
     const rect = pitch.getBoundingClientRect();
