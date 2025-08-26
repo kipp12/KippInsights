@@ -69,6 +69,7 @@ def index():
                             x_end_coordinate=x_end_coordinate,
                             y_end_coordinate=y_end_coordinate,
                             successful=successful,
+                            action_id=len(events)+1,
                             )
 
 if __name__ == '__main__':

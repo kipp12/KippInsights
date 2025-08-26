@@ -16,7 +16,7 @@
     <div class="control_buttons">
         
 
-        <h2>Action 1</h2>
+        <h2>Action {{action_id}}</h2>
         <hr>
         
         <!-- Dropdown Form -->
@@ -40,7 +40,7 @@
             <button>Reset</button>
 
             <label for="successful">Successful?</label>
-            <input type="checkbox" name="successful" id="successful">
+            <input type="checkbox" name="successful" id="successful" checked>
 
             
         </form>
@@ -49,10 +49,10 @@
 
         <h3>Action Details:</h3>
 
-        <p id="type">Type: {{type}} </p>
+        <p id="type">Type: pass </p>
         <p id="start_coords">Start location: </p>
         <p id="end_coords">End location:</p>
-        <p id="success">Successful: n/a</p>
+        <p id="success">Successful: yes</p>
         
 
     </div>
@@ -105,6 +105,7 @@ const pitchHeight = pitch.clientHeight; // 592
 let clicks = 0;
 let startMarker, endMarker, line;
 
+// updates the successful field 
 const checkbox = document.getElementById("successful");
 const statusText = document.getElementById("success");
 
@@ -116,6 +117,13 @@ const statusText = document.getElementById("success");
         }
     });
 
+    const dropdown = document.getElementById("action_type");
+    const preview = document.getElementById("type");
+
+    // Update preview text whenever selection changes
+    dropdown.addEventListener("change", () => {
+        preview.textContent = "Type: " + dropdown.value;
+    });
 pitch.addEventListener("click", function(event) {
     const rect = pitch.getBoundingClientRect();
 
