@@ -9,6 +9,10 @@ app = Flask(__name__)
 def index():
     
     action_type = None
+    x_start_coordinate = "0.00"
+    y_start_coordinate = "0.00"
+    x_end_coordinate = "0.0"
+    y_end_coordinate = "0.00"
 
     if request.method == "POST":
         # Get selected action type from the form
@@ -20,13 +24,10 @@ def index():
         print("Action:", action_type, "X:", x_start_coordinate, "Y:", y_start_coordinate)
         print("Action:", action_type, "X:", x_end_coordinate, "Y:", y_end_coordinate)
     
+    
 
     #temporary variables 
     #player = "Bukayo Saka"
-    #x_start_coordinate = "0.34"
-    #y_start_coordinate = "0.76"
-    #x_end_coordinate = "0.24"
-    #y_end_coordinate = "0.64"
     successful = True
     shot_x_coordinate = "0.85"
     shot_y_coordinate = "0.25"
