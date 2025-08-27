@@ -54,6 +54,9 @@
         <p id="end_coords">End location:</p>
         <p id="success">Successful: yes</p>
         
+        <form action="/save" method="POST">
+            <button type="submit" id="save" onclick="save_message()">Save sequence</button>
+        </form>
 
     </div>
     
@@ -97,6 +100,10 @@
 </html>
 
 <script>
+
+function save_message(){
+    window.alert("Sequence saved")
+}
 
 const pitch = document.getElementById("pitch");
 const pitchWidth = pitch.clientWidth;   // 920

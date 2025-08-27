@@ -16,7 +16,6 @@ def create_empty_dataframe():
 @app.route('/', methods=["POST", "GET"])
 def index():
     
-    
     successful = False
     action_type = None
     x_start_coordinate = None
@@ -31,7 +30,11 @@ def index():
         y_start_coordinate = request.form.get("y_start")
         x_end_coordinate = request.form.get("x_end")
         y_end_coordinate = request.form.get("y_end")
-        successful = "successful" in request.form
+
+        if request.form.get("successful") == "on":
+            successful = True
+        else:
+            successful = False
 
         #testing that values are returned from the form correctly
         print("Action:", action_type, "X:", x_start_coordinate, "Y:", y_start_coordinate)
@@ -40,7 +43,7 @@ def index():
 
         # Each time a new event happens:
         new_event = {
-            "action_id": len(events)+1,
+            #"action_id": len(events)+1,
             "sequence_id": 1,
             "action_type": action_type,
             "successful": successful,
@@ -51,17 +54,14 @@ def index():
         }
         events.append(new_event)
 
-        print()
-        print("event added:")
-        print(new_event)
-        # Redirect to GET page
+        #Redirect to GET page
         return redirect(url_for("index"))
 
     
     
-    print()
-    print("all events:")
-    print(events)
+    #print()
+    #print("all events:")
+    #print(events)
 
     return render_template('index.html', type=action_type,
                             x_start_coordinate=x_start_coordinate,
@@ -71,6 +71,24 @@ def index():
                             successful=successful,
                             action_id=len(events)+1,
                             )
+
+@app.route('/save', methods=["POST", "GET"])
+def save():
+    global events
+    
+    print("save test")
+    print(events)
+    print()
+    df = pd.DataFrame(events)
+    df.index += 1
+    print(df)
+    events = []
+    
+
+
+    return redirect(url_for("index"))
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
