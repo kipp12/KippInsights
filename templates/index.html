@@ -54,10 +54,14 @@
         <p id="end_coords">End location:</p>
         <p id="success">Successful: yes</p>
         
-        <form action="/save" method="POST">
-            <button type="submit" id="save" onclick="save_message()">Save sequence</button>
-        </form>
-
+        <div class="save_buttons">
+            <form action="/save" method="POST">
+                <button type="submit" id="save" onclick="save_message()">Save sequence</button>
+            </form>
+            
+            <button type="submit" id="save" onclick="save_to_file()">Save to file</button>
+            
+        </div>
 
     </div>
     
@@ -121,6 +125,27 @@
 
 function save_message(){
     window.alert("Sequence saved")
+}
+
+function save_to_file(){
+    let filename = prompt("Enter filename:");
+
+    if (filename) {
+        // Create a hidden form dynamically
+        let form = document.createElement("form");
+        form.method = "POST";
+        form.action = "{{ url_for('save_to_file') }}";
+
+        // Add filename input
+        let input = document.createElement("input");
+        input.type = "hidden";
+        input.name = "filename";
+        input.value = filename;
+        form.appendChild(input);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
 }
 
 const pitch = document.getElementById("pitch");

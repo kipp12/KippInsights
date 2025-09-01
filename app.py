@@ -62,6 +62,34 @@ def save():
 
     return redirect(url_for("index"))
 
+@app.route('/save_to_file', methods=["POST", "GET"])
+def save_to_file():
+    global events
+    global sequence_id
+    global action_id
+    filepath = '~/documents/CODE/KippInsights/data/'
+    
+    filename = request.form.get('filename')
+    if not filename.endswith(".csv"):
+        filename += ".csv"
+
+    filename = filepath + filename
+
+    print("save to file test")
+    
+    df = pd.DataFrame(events)
+    df.index += 1
+    print(df)
+    
+    df.to_csv(filename, index=False)
+
+    events = []
+
+    sequence_id=1
+    action_id=1
+
+    return redirect(url_for("index"))
+
 
 
 if __name__ == '__main__':
