@@ -1,6 +1,17 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KippInsights</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
 
-{% block content %}
+
+<body>
+    
+    <h1>KippInsights</h1>
+    <hr>
+
 
     <div class="control_buttons">
         
@@ -107,12 +118,8 @@
 
     </div>
 
-
-
-{% endblock %}
+</body>
 </html>
-
-{% block scripts %}
 
 <script>
 
@@ -237,4 +244,3 @@ pitch.addEventListener("click", function(event) {
 
     </script>
     
-    {% endblock %}

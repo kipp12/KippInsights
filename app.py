@@ -14,6 +14,18 @@ def index():
     print(events)
     return render_template('index.html', events = events, sequence_id=sequence_id,action_id=action_id)
 
+@app.route('/PassMap', methods=["POST", "GET"])
+def pass_map():
+    print("on index")
+    print(events)
+    return render_template('pass_map.html', events = events, sequence_id=sequence_id,action_id=action_id)
+
+@app.route('/passingPatterns', methods=["POST", "GET"])
+def passing_patterns():
+    print("on index")
+    print(events)
+    return render_template('passing_patterns.html', events = events, sequence_id=sequence_id,action_id=action_id)
+
 
 @app.route('/add_event', methods=["POST"])
 def add_event():
@@ -42,7 +54,7 @@ def add_event():
     action_id += 1  
     print(events)
 
-    return redirect(url_for("index"))
+    return redirect(url_for("pass_map"))
 
 
 @app.route('/save', methods=["POST", "GET"])
@@ -60,7 +72,7 @@ def save():
     sequence_id+=1
     action_id = 1
 
-    return redirect(url_for("index"))
+    return redirect(url_for("pass_map"))
 
 @app.route('/save_to_file', methods=["POST", "GET"])
 def save_to_file():
@@ -88,7 +100,7 @@ def save_to_file():
     sequence_id=1
     action_id=1
 
-    return redirect(url_for("index"))
+    return redirect(url_for("pass_map"))
 
 
 

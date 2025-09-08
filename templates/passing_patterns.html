@@ -8,32 +8,34 @@
         <h2>Action {{action_id}}</h2>
         <hr>
         
-        <!-- Dropdown Form -->
-        <form method="POST" action="/add_event">
-            <label for="action_type">Select action type:</label>
-            <select name="action_type" id="action_type">
-                <option value="pass">Pass</option>
-                <option value="shot">Shot</option>
-                <option value="dribble">Dribble</option>
-            </select>
+        <div class="save_buttons">
+            <form action="add_event" method="POST">
 
+                <!-- Hidden inputs to store coordinates -->
+                <input type="hidden" id="action_type" name="action_type">
+                <input type="hidden" id="x_start" name="x_start">
+                <input type="hidden" id="y_start" name="y_start">
+                <input type="hidden" id="x_end" name="x_end">
+                <input type="hidden" id="y_end" name="y_end">
+
+
+                <button type="submit">Save Event</button>
+
+                <label for="successful">Successful?</label>
+                <input type="checkbox" name="successful" id="successful" checked>
+
+            </form>
+
+        
+            <form action="/save" method="POST">
+                <button type="submit" id="save" onclick="save_message()">Save sequence</button>
+            </form>
             
-            <!-- Hidden inputs to store coordinates -->
-            <input type="hidden" id="x_start" name="x_start">
-            <input type="hidden" id="y_start" name="y_start">
-            <input type="hidden" id="x_end" name="x_end">
-            <input type="hidden" id="y_end" name="y_end">
-
-
-            <button type="submit">Save Event</button>
-            <button>Reset current sequence</button>
-
-            <label for="successful">Successful?</label>
-            <input type="checkbox" name="successful" id="successful" checked>
-
+            <button type="submit" id="save" onclick="save_to_file()">Save to file</button>
             
-        </form>
+        </div>
 
+        <button class="reset_btn" onclick="resetEvent()">Reset current event</button>
         <hr>
 
         <h3>Action Details:</h3>
@@ -43,14 +45,7 @@
         <p id="end_coords">End location:</p>
         <p id="success">Successful: yes</p>
         
-        <div class="save_buttons">
-            <form action="/save" method="POST">
-                <button type="submit" id="save" onclick="save_message()">Save sequence</button>
-            </form>
-            
-            <button type="submit" id="save" onclick="save_to_file()">Save to file</button>
-            
-        </div>
+
 
     </div>
     
@@ -99,7 +94,16 @@
             />
 
             <circle cx="{{ (e.x_start_coord | float) * 920 }}" cy="{{ (e.y_start_coord | float) * 592 }}" r="5" fill="green"/>
-            <circle cx="{{(e.x_end_coord | float) * 920 }}" cy="{{ (e.y_end_coord | float) * 592 }}" r="5" fill="red"/>
+            
+                <!-- Label with action_id -->
+            <text 
+                x="{{ ((e.x_start_coord | float + e.x_end_coord | float)/2) * 920 }}" 
+                y="{{ ((e.y_start_coord | float + e.y_end_coord | float)/2) * 592 - 5 }}" 
+                font-size="14" 
+                fill="black" 
+                text-anchor="middle">
+                {{ e.action_id }}
+            </text>
             {% endfor %}
             
         </svg>
@@ -115,6 +119,32 @@
 {% block scripts %}
 
 <script>
+
+function resetEvent() {
+    // Remove drawn markers and line
+    if (startMarker) pitch.removeChild(startMarker);
+    if (endMarker) pitch.removeChild(endMarker);
+    if (line) pitch.removeChild(line);
+
+    // Reset JS variables
+    startMarker = null;
+    endMarker = null;
+    line = null;
+    clicks = 0;
+
+    // Clear hidden inputs
+    document.getElementById("x_start").value = "";
+    document.getElementById("y_start").value = "";
+    document.getElementById("x_end").value = "";
+    document.getElementById("y_end").value = "";
+
+    // Reset display text
+    document.getElementById("start_coords").innerHTML = "Start location:";
+    document.getElementById("end_coords").innerHTML = "End location:";
+}
+
+
+document.getElementById("action_type").value = "pass"
 
 function save_message(){
     window.alert("Sequence saved")

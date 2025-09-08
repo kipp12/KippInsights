@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KippInsights</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <h1>KippInsights</h1>
+
+        <!-- Shared Navigation -->
+    <nav class="navbar">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('pass_map') }}">Pass Map</a>
+        <a href="{{ url_for('passing_patterns') }}">Passing Patterns</a>
+             
+             
+    </nav>
+    <hr>
+
+
+    <!-- Where page-specific content goes -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    {% block scripts %}{% endblock %}
+
+    <!-- Shared Footer -->
+</body>
+</html>
